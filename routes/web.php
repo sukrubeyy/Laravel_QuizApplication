@@ -19,6 +19,12 @@ Route::get('/', function () {
 
 Route::get('/php','App\Http\Controllers\App@phpInfo');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/panel', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::group(['middleware'=>['auth','isAdmin'],'prefix'=>'admin'],function(){
+    Route::get('deneme',function(){
+    return "middleware Test";}
+);
+});
