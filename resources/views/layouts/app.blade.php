@@ -17,7 +17,7 @@
     @livewireStyles
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </head>
 
 <body class="font-sans antialiased">
@@ -45,13 +45,14 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
                 {{ $slot }}
+
             </div>
         </div>
 
     </div>
 
     @stack('modals')
-
+    {{$js}}
     @livewireScripts
 </body>
 
