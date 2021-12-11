@@ -1,2 +1,0 @@
-Validaton controller created and writed some attirbutes
-for rules.
