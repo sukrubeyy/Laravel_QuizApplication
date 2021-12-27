@@ -5,6 +5,9 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">
+                <a href="{{route('quizzes.index',$quiz->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i>Go Back</a>
+            </h5>
+            <h5 class="card-title">
                 <a href="{{route('questions.create',$quiz->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Create Question</a>
             </h5>
             <table class="table table-bordered">
@@ -17,7 +20,7 @@
                         <th scope="col">Answer 3</th>
                         <th scope="col">Answer 4</th>
                         <th scope="col">Correct Answer</th>
-                        <th scope="col" >Transactions</th>
+                        <th scope="col">Transactions</th>
                     </tr>
                     @foreach($quiz->questions as $question)
                     <tr>
