@@ -9,7 +9,9 @@
                 <strong>#{{$loop->iteration}}</strong> {{$question->question}}
                 @if($question->image)
                     <img src="{{asset($question->image)}}" alt="Question Image" class="img-responsive">
-                @endif
+                    <br>
+                    @endif
+
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="{{$question->id}}" id="quiz{{$question->id}}1" value="answer1" required>
                     <label class="form-check-label" for="quiz{{$question->id}}1">
@@ -35,8 +37,8 @@
                     </label>
                 </div>
                 <hr>
-                <button type="submit" class="btn btn-success btn-sm btn-block">Take Assegment</button>
                 @endforeach
+                <button type="submit" class="btn btn-success btn-sm btn-block">Take Assegment</button>
 
             </form>
         </div>
