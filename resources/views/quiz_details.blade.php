@@ -29,7 +29,7 @@
                                 <p class="mb-1">{{$quizDetails->description}}</p>
                                 <small>@if($quizDetails->finished_at){{$quizDetails->finished_at->diffForHumans()}}@endif</small>
                             </div>
-                            <a href="#" class="btn btn-primary">Join Quiz</a>
+                            <a href="{{route('quiz.join',$quizDetails->slug)}}" class="btn btn-primary">Join Quiz</a>
                     </div>
 
                 </div>

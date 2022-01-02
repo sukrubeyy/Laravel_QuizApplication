@@ -23,7 +23,7 @@ class Quiz extends Model
 
     use HasFactory;
     protected $fillable = [
-        'title', 'description', 'finished_at'
+        'title','status', 'description', 'finished_at'
     ];
 
     protected $dates=['finished_at'];
