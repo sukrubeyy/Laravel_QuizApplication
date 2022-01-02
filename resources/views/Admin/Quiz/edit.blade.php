@@ -15,6 +15,14 @@
                     <textarea name="description" class="form-control" rows="4">{{$quiz->description}}</textarea>
                 </div>
                 <div class="form-group">
+                    <label for="isWannaAddTime">Select Status</label>
+                    <select name="status" class="form-control">
+                        <option value="draft" @if($quiz->status=='draft') selected @endif>Draft</option>
+                        <option value="publish" @if($quiz->status=='publish') selected @endif>Publish</option>
+                        <option value="passive" @if($quiz->status=='passive') selected @endif>Passive</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="isWannaAddTime">Do you want to add finish time?</label>
                     <input type="checkbox" @if($quiz->finished_at) checked @endif name="isWannaAddTime" id="isFinished">
                 </div>
