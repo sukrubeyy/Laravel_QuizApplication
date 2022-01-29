@@ -7,16 +7,22 @@
             <div class="row">
                 <div class="col-md-4">
                     <ul class="list-group">
+                        @if($quizDetails->finished_at)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Soru Sayısı
+                            Finished Time
+                            <span class="badge alert-success">{{$quizDetails->finished_at->diffForHumans()}}</span>
+                        </li>
+                        @endif
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Question Count
                             <span class="badge alert-success">{{$quizDetails->questions_count}}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Katılımcı Sayısı
+                            User Count
                             <span class="badge alert-success">10</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Ortalama Puan
+                            Avarage
                             <span class="badge alert-success">65</span>
                         </li>
                     </ul>
