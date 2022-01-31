@@ -16,7 +16,7 @@ class AnswerFactory extends Factory
         return [
             'user_id'=>rand(1,11),
             'question_id'=>rand(1,100),
-            'correct_answer'=>'answer'.rand(1,4),
+            'answer'=>'answer'.rand(1,4),
         ];
     }
 }
