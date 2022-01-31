@@ -11,6 +11,29 @@ class Quiz extends Model
 {
     use Sluggable;
 
+    use HasFactory;
+    protected $fillable = [
+        'title','status', 'description', 'finished_at'
+    ];
+
+    protected $appends=['details'];
+
+    public function getDetailsAttribute(){
+        return [
+            'average'=>$this->results()->avg('point'),
+            'join_count'=>$this->results()->count(),
+        ];
+    }
+
+
+public function results(){
+    return $this->hasMany('App\Models\Result');
+}
+
+public function my_result(){
+    return $this->hasOne('App\Models\Result')->Where('user_id',auth()->user()->id);
+}
+
     public function sluggable()
     {
         return [
@@ -20,11 +43,6 @@ class Quiz extends Model
             ]
         ];
     }
-
-    use HasFactory;
-    protected $fillable = [
-        'title','status', 'description', 'finished_at'
-    ];
 
     protected $dates=['finished_at'];
 
