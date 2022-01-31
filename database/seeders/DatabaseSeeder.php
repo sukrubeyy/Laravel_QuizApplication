@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Result;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -19,6 +21,7 @@ class DatabaseSeeder extends Seeder
             quiz_seeder::class,
             QuestionSeeder::class,
             AnswerSeeder::class,
+            ResultSeeder::class,
         ]);
 
     }
