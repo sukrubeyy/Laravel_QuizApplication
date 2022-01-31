@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Quiz;
 use Illuminate\Http\Request;
+use App\Models\Quiz;
 use App\Models\Answer;
+use App\Models\Result;
 class MainController extends Controller
 {
     public function dashboard()
@@ -20,17 +21,34 @@ class MainController extends Controller
     public function quiz($slug)
     {
         $quiz = Quiz::whereSlug($slug)->with('questions')->first();
-        return view('quiz',compact('quiz'));
+        return view('quiz', compact('quiz'));
     }
-    public function result(Request $request,$slug)
+    public function result(Request $request, $slug)
     {
-        $quiz = Quiz::with('questions')->whereSlug($slug)->first() ?? abort(404,'Quiz Not Found');
-        foreach($quiz->questions as $question){
+        $quiz = Quiz::with('questions')->whereSlug($slug)->first() ?? abort(404, 'Quiz Not Found');
+        $correctAnswer = 0;
+        $point = 0;
+        foreach ($quiz->questions as $question) {
             Answer::create([
-                'user_id'=>auth()->user()->id,
-                'question_id'=>$question->id,
-                'answer'=>$request->post($question->id)
+                'user_id' => auth()->user()->id,
+                'question_id' => $question->id,
+                'answer' => $request->post($question->id)
             ]);
+            if ($question->correct_answer === $request->post($question->id)) {
+                $correctAnswer++;
+            }
         }
+        $point = round((100 / count($quiz->questions)) * $correctAnswer);
+        $wrong = count($quiz->questions)-$correctAnswer;
+
+        Result::create([
+        'user_id'=>auth()->user()->id,
+        'quiz_id'=>$quiz->id,
+        'point'=>$point,
+        'correct'=>$correctAnswer,
+        'wrong'=>$wrong,
+        ]);
+
+        return redirect()->route('quiz.detail',$quiz->slug)->withSuccess("Quiz Puanınız: ".$point);
     }
 }
